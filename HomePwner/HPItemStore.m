@@ -41,15 +41,6 @@
     return item;
 }
 
-- (NSArray *)valueMoreThan50Items {
-    return [self.allItems filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"valueInDollars>=50"]];
-}
-
-- (NSArray *)otherItems {
-    return [self.allItems filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"valueInDollars<50"]];
-}
-
-
 - (NSArray *)allItems {
     return [self privateItems];
 }

@@ -9,8 +9,6 @@
 
 @implementation HPItemsViewController {
     HPItemStore *_itemStore;
-    NSArray *valueMoreThan50Items;
-    NSArray *otherItems;
 }
 
 - (instancetype)initWithStyle:(UITableViewStyle)style {
@@ -23,9 +21,6 @@
         for (int i = 0; i < 20; ++i) {
             [_itemStore createItem];
         }
-        valueMoreThan50Items= [_itemStore valueMoreThan50Items];
-        otherItems= [_itemStore otherItems];
-        NSLog(@"%s %@ %@", sel_getName(_cmd), valueMoreThan50Items, otherItems);
     }
     return self;
 }
@@ -37,21 +32,13 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s %@", sel_getName(_cmd), indexPath);
     UITableViewCell *tableViewCell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
-    tableViewCell.textLabel.text = [(indexPath.section==0?valueMoreThan50Items:otherItems)[indexPath.row] description];
+    tableViewCell.textLabel.text = [_itemStore.allItems[indexPath.row] description];
     return tableViewCell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return section==0?valueMoreThan50Items.count:otherItems.count;
+    return [_itemStore.allItems count];
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
-}
-
-- (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return section==0?@"value >= 50":@"other";
-}
 @end

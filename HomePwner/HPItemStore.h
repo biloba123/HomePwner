@@ -11,6 +11,4 @@
 
 +(instancetype)getInstance;
 -(HPItem *)createItem;
--(NSArray *)valueMoreThan50Items;
--(NSArray *)otherItems;
 @end
