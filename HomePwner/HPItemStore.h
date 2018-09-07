@@ -11,4 +11,6 @@
 
 +(instancetype)getInstance;
 -(HPItem *)createItem;
+-(void)removeItem:(HPItem *)item;
+-(void)moveItemAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
 @end

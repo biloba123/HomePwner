@@ -10,6 +10,8 @@
 		B4F300C38FC785A97BF76506 /* HPItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F30EBF50B9ECE1AE2B0E0D /* HPItemStore.m */; };
 		B4F3027C5E23F2BE1164B729 /* HPItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F30AEFC4BE3581E00B992D /* HPItem.m */; };
 		B4F30725CF567EA2957E230E /* HPItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F301B935BB545A5970230C /* HPItemsViewController.m */; };
+		FA210E3921415C22003A3384 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA210E3821415C22003A3384 /* HeaderView.xib */; };
+		FA210E3B21422C00003A3384 /* FooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA210E3A21422C00003A3384 /* FooterView.xib */; };
 		FAC51E5B2140BD660054755C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC51E5A2140BD660054755C /* AppDelegate.m */; };
 		FAC51E632140BD680054755C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAC51E622140BD680054755C /* Assets.xcassets */; };
 		FAC51E692140BD680054755C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC51E682140BD680054755C /* main.m */; };
@@ -41,6 +43,8 @@
 		B4F30A5211C150AF4A100835 /* HPItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPItem.h; sourceTree = "<group>"; };
 		B4F30AEFC4BE3581E00B992D /* HPItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPItem.m; sourceTree = "<group>"; };
 		B4F30EBF50B9ECE1AE2B0E0D /* HPItemStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPItemStore.m; sourceTree = "<group>"; };
+		FA210E3821415C22003A3384 /* HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
+		FA210E3A21422C00003A3384 /* FooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FooterView.xib; sourceTree = "<group>"; };
 		FAC51E562140BD660054755C /* HomePwner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomePwner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAC51E592140BD660054755C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FAC51E5A2140BD660054755C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -114,6 +118,8 @@
 				B4F302E14179A8F986C1E84A /* HPItemsViewController.h */,
 				B4F30EBF50B9ECE1AE2B0E0D /* HPItemStore.m */,
 				B4F3097C928EFBFADA09126C /* HPItemStore.h */,
+				FA210E3821415C22003A3384 /* HeaderView.xib */,
+				FA210E3A21422C00003A3384 /* FooterView.xib */,
 			);
 			path = HomePwner;
 			sourceTree = "<group>";
@@ -240,6 +246,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAC51E632140BD680054755C /* Assets.xcassets in Resources */,
+				FA210E3B21422C00003A3384 /* FooterView.xib in Resources */,
+				FA210E3921415C22003A3384 /* HeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
