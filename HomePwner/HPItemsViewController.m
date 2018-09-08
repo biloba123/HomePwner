@@ -5,10 +5,11 @@
 
 #import "HPItemsViewController.h"
 #import "HPItemStore.h"
+#import "HPDetailViewController.h"
 
 @interface HPItemsViewController ()
-@property(nonatomic, strong) IBOutlet UIView *headerView;
-@property(nonatomic, strong) IBOutlet UIView *footerView;
+//@property(nonatomic, strong) IBOutlet UIView *headerView;
+//@property(nonatomic, strong) IBOutlet UIView *footerView;
 @end
 
 @implementation HPItemsViewController {
@@ -22,9 +23,14 @@
 - (instancetype)init {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         _itemStore = [HPItemStore getInstance];
-//        for (int i = 0; i < 20; ++i) {
-//            [_itemStore createItem];
-//        }
+        UINavigationItem *navItem = self.navigationItem;
+        navItem.title = @"HomePwner";
+        UIBarButtonItem *addBtnItem = [[UIBarButtonItem alloc]
+                initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                     target:self
+                                     action:@selector(addNewItem:)];
+        navItem.rightBarButtonItem=addBtnItem;
+        navItem.leftBarButtonItem=self.editButtonItem;
     }
     return self;
 }
@@ -33,8 +39,13 @@
     [super viewDidLoad];
     [self.tableView registerClass:[UITableViewCell class]
            forCellReuseIdentifier:@"UITableViewCell"];
-    self.tableView.tableHeaderView = self.headerView;
-    self.tableView.tableFooterView = self.footerView;
+//    self.tableView.tableHeaderView = self.headerView;
+//    self.tableView.tableFooterView = self.footerView;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+    [self.tableView reloadData];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -66,6 +77,13 @@
     return @"remove";
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    HPDetailViewController *detailViewController = [HPDetailViewController new];
+    detailViewController.item = _itemStore.allItems[indexPath.row];
+    [self.navigationController pushViewController:detailViewController
+                                         animated:YES];
+}
+
 - (IBAction)addNewItem:(id)sender {
     [_itemStore createItem];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[_itemStore allItems].count - 1 inSection:0];
@@ -86,22 +104,22 @@
     }
 }
 
-- (UIView *)headerView {
-    if (!_headerView) {
-        [[NSBundle mainBundle] loadNibNamed:@"HeaderView"
-                                      owner:self
-                                    options:nil];
-    }
-    return _headerView;
-}
-
-- (UIView *)footerView {
-    if (!_footerView) {
-        [[NSBundle mainBundle] loadNibNamed:@"FooterView"
-                                      owner:self
-                                    options:nil];
-    }
-    return _footerView;
-}
+//- (UIView *)headerView {
+//    if (!_headerView) {
+//        [[NSBundle mainBundle] loadNibNamed:@"HeaderView"
+//                                      owner:self
+//                                    options:nil];
+//    }
+//    return _headerView;
+//}
+//
+//- (UIView *)footerView {
+//    if (!_footerView) {
+//        [[NSBundle mainBundle] loadNibNamed:@"FooterView"
+//                                      owner:self
+//                                    options:nil];
+//    }
+//    return _footerView;
+//}
 
 @end
