@@ -63,6 +63,7 @@
         _valueInDollars = value;
         // Set _dateCreated to the current date and time
         _dateCreated = [[NSDate alloc] init];
+        _itemKey= [NSUUID new].UUIDString;
     }
 
     // Return the address of the newly initialized object

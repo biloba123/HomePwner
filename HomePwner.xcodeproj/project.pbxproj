@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B4F300C38FC785A97BF76506 /* HPItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F30EBF50B9ECE1AE2B0E0D /* HPItemStore.m */; };
+		B4F3026C3572BA245C72DDE8 /* HPImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F30059DC49A0938F7A0BA6 /* HPImageStore.m */; };
 		B4F3027C5E23F2BE1164B729 /* HPItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F30AEFC4BE3581E00B992D /* HPItem.m */; };
 		B4F30725CF567EA2957E230E /* HPItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F301B935BB545A5970230C /* HPItemsViewController.m */; };
 		FA210E3921415C22003A3384 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA210E3821415C22003A3384 /* HeaderView.xib */; };
@@ -39,7 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B4F30059DC49A0938F7A0BA6 /* HPImageStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPImageStore.m; sourceTree = "<group>"; };
 		B4F301B935BB545A5970230C /* HPItemsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPItemsViewController.m; sourceTree = "<group>"; };
+		B4F301FFA34DE19288D25EF6 /* HPImageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPImageStore.h; sourceTree = "<group>"; };
 		B4F302E14179A8F986C1E84A /* HPItemsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPItemsViewController.h; sourceTree = "<group>"; };
 		B4F3097C928EFBFADA09126C /* HPItemStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPItemStore.h; sourceTree = "<group>"; };
 		B4F30A5211C150AF4A100835 /* HPItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPItem.h; sourceTree = "<group>"; };
@@ -128,6 +131,8 @@
 				FA210E3F21424F86003A3384 /* HPDetailViewController.h */,
 				FA210E4021424F86003A3384 /* HPDetailViewController.m */,
 				FA210E4121424F86003A3384 /* HPDetailViewController.xib */,
+				B4F30059DC49A0938F7A0BA6 /* HPImageStore.m */,
+				B4F301FFA34DE19288D25EF6 /* HPImageStore.h */,
 			);
 			path = HomePwner;
 			sourceTree = "<group>";
@@ -287,6 +292,7 @@
 				B4F3027C5E23F2BE1164B729 /* HPItem.m in Sources */,
 				B4F30725CF567EA2957E230E /* HPItemsViewController.m in Sources */,
 				B4F300C38FC785A97BF76506 /* HPItemStore.m in Sources */,
+				B4F3026C3572BA245C72DDE8 /* HPImageStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

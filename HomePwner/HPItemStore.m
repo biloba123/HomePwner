@@ -6,6 +6,7 @@
 #import <EventKit/EventKit.h>
 #import "HPItemStore.h"
 #import "HPItem.h"
+#import "HPImageStore.h"
 @interface HPItemStore()
 @property (nonatomic) NSMutableArray *privateItems;
 @end
@@ -42,6 +43,7 @@
 }
 
 - (void)removeItem:(HPItem *)item {
+    [[HPImageStore getInstance] deleteImageForKey:item.itemName];
     [self.privateItems removeObjectIdenticalTo:item];
 }
 
