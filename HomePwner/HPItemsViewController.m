@@ -29,8 +29,8 @@
                 initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                      target:self
                                      action:@selector(addNewItem:)];
-        navItem.rightBarButtonItem=addBtnItem;
-        navItem.leftBarButtonItem=self.editButtonItem;
+        navItem.rightBarButtonItem = addBtnItem;
+        navItem.leftBarButtonItem = self.editButtonItem;
     }
     return self;
 }
@@ -90,15 +90,15 @@
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
-- (IBAction)toggleEditingMode:(id)sender {
+- (IBAction)toggleEditingMode:(UIButton *)sender {
     if (self.isEditing) {
-        [((UIButton *) sender) setTitle:@"Edit"
-                               forState:UIControlStateNormal];
+        [sender setTitle:@"Edit"
+                forState:UIControlStateNormal];
         [self setEditing:NO
                 animated:YES];
     } else {
-        [((UIButton *) sender) setTitle:@"Done"
-                               forState:UIControlStateNormal];
+        [sender setTitle:@"Done"
+                forState:UIControlStateNormal];
         [self setEditing:YES
                 animated:YES];
     }

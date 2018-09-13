@@ -17,14 +17,14 @@
 @property(weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property(weak, nonatomic) IBOutlet UIImageView *imageView;
 @property(weak, nonatomic) IBOutlet UIToolbar *toolbar;
-@property(weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet UIButton *deleteImgBtn;
+@property(weak, nonatomic) IBOutlet UIButton *deleteImgBtn;
 
 @end
 
 @implementation HPDetailViewController
 
 #pragma mark - View life cycle
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self.view endEditing:YES];
@@ -38,7 +38,6 @@
     // Do any additional setup after loading the view from its nib.
     self.nameField.delegate = self;
     self.serialNumberField.delegate = self;
-    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 680);
 
     HPItem *item = self.item;
     self.nameField.text = item.itemName;
@@ -52,21 +51,49 @@
     }
     self.dateLabel.text = [formatter stringFromDate:item.dateCreated];
     [self showImg:[[HPImageStore getInstance] imageForKey:item.itemKey]];
+
+    UIImageView *iv = [UIImageView new];
+    iv.contentMode = UIViewContentModeScaleAspectFit;
+    iv.translatesAutoresizingMaskIntoConstraints = NO;
+//    @"H:|-0-[iv]-0-|";
+//    @"V:[dateLabel]-8-[iv]-16-[toolbar]";
+    [self.view addSubview:iv];
+    self.imageView = iv;
+
+    NSDictionary *nameMap = @{
+            @"imageView": self.imageView,
+            @"dateLabel": self.dateLabel,
+            @"toolbar": self.toolbar
+    };
+    NSArray *horConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[imageView]-0-|"
+                                                         options:0
+                                                         metrics:nil
+                                                           views:nameMap];
+    NSArray *verConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[dateLabel]-16-[imageView]-16-[toolbar]"
+                                                                    options:0
+                                                                    metrics:nil
+                                                                      views:nameMap];
+    [self.view addConstraints:horConstraints];
+    [self.view addConstraints:verConstraints];
+
 }
 
 #pragma mark - Controller events
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - TextField delegate
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
 }
 
 #pragma mark - Actions
+
 - (IBAction)takePicture:(id)sender {
     NSLog(@"%s", sel_getName(_cmd));
     UIImagePickerController *imagePickerController = [UIImagePickerController new];
@@ -75,15 +102,12 @@
     } else {
         imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
-    imagePickerController.allowsEditing=YES;
-    imagePickerController.mediaTypes=
+    imagePickerController.allowsEditing = YES;
     imagePickerController.delegate = self;
 
     [self presentViewController:imagePickerController
                        animated:YES
-                     completion:^{
-                         NSLog(@"presentViewController");
-                     }];
+                     completion:nil];
 }
 
 - (IBAction)deleteImg:(id)sender {
@@ -92,16 +116,16 @@
 }
 
 #pragma mark - Image picker delegate
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info {
     UIImage *img = info[UIImagePickerControllerEditedImage];
     [[HPImageStore getInstance] setImage:img forKey:self.item.itemKey];
     [self showImg:img];
-    [self dismissViewControllerAnimated:YES completion:^{
-        NSLog(@"dismissViewControllerAnimated");
-    }];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Other
+
 - (void)setItem:(HPItem *)item {
     _item = item;
     self.navigationItem.title = item.itemName;
@@ -109,7 +133,20 @@
 
 - (void)showImg:(UIImage *)image {
     self.imageView.image = image;
-    self.deleteImgBtn.hidden=image==nil;
+    self.deleteImgBtn.hidden = image == nil;
+}
+
+//- (void)viewDidLayoutSubviews {
+//    for (UIView *v in self.view.subviews) {
+//        if ([v hasAmbiguousLayout]) {
+//            NSLog(@"%s %@", sel_getName(_cmd), v);
+//        }
+//    }
+//}
+
+- (IBAction)backgroundTapped:(id)sender {
+    NSLog(@"%s", sel_getName(_cmd));
+    [self.view endEditing:YES];
 }
 /*
 #pragma mark - Navigation
@@ -120,5 +157,9 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
 
 @end

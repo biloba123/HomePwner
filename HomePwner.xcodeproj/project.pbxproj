@@ -11,11 +11,12 @@
 		B4F3026C3572BA245C72DDE8 /* HPImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F30059DC49A0938F7A0BA6 /* HPImageStore.m */; };
 		B4F3027C5E23F2BE1164B729 /* HPItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F30AEFC4BE3581E00B992D /* HPItem.m */; };
 		B4F30725CF567EA2957E230E /* HPItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F301B935BB545A5970230C /* HPItemsViewController.m */; };
+		B4F30D980FE6777723CF6493 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F3086518C945BC6129BE57 /* AppDelegate.m */; };
 		FA210E3921415C22003A3384 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA210E3821415C22003A3384 /* HeaderView.xib */; };
 		FA210E3B21422C00003A3384 /* FooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA210E3A21422C00003A3384 /* FooterView.xib */; };
 		FA210E4221424F86003A3384 /* HPDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA210E4021424F86003A3384 /* HPDetailViewController.m */; };
 		FA210E4321424F86003A3384 /* HPDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA210E4121424F86003A3384 /* HPDetailViewController.xib */; };
-		FAC51E5B2140BD660054755C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC51E5A2140BD660054755C /* AppDelegate.m */; };
+		FA6AA3142147E94900989F27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA6AA3132147E94900989F27 /* LaunchScreen.storyboard */; };
 		FAC51E632140BD680054755C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAC51E622140BD680054755C /* Assets.xcassets */; };
 		FAC51E692140BD680054755C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC51E682140BD680054755C /* main.m */; };
 		FAC51E732140BD680054755C /* HomePwnerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC51E722140BD680054755C /* HomePwnerTests.m */; };
@@ -44,6 +45,8 @@
 		B4F301B935BB545A5970230C /* HPItemsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPItemsViewController.m; sourceTree = "<group>"; };
 		B4F301FFA34DE19288D25EF6 /* HPImageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPImageStore.h; sourceTree = "<group>"; };
 		B4F302E14179A8F986C1E84A /* HPItemsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPItemsViewController.h; sourceTree = "<group>"; };
+		B4F30498C795EF81A7C81D51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B4F3086518C945BC6129BE57 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B4F3097C928EFBFADA09126C /* HPItemStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPItemStore.h; sourceTree = "<group>"; };
 		B4F30A5211C150AF4A100835 /* HPItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPItem.h; sourceTree = "<group>"; };
 		B4F30AEFC4BE3581E00B992D /* HPItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPItem.m; sourceTree = "<group>"; };
@@ -53,9 +56,8 @@
 		FA210E3F21424F86003A3384 /* HPDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPDetailViewController.h; sourceTree = "<group>"; };
 		FA210E4021424F86003A3384 /* HPDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPDetailViewController.m; sourceTree = "<group>"; };
 		FA210E4121424F86003A3384 /* HPDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HPDetailViewController.xib; sourceTree = "<group>"; };
+		FA6AA3132147E94900989F27 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FAC51E562140BD660054755C /* HomePwner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomePwner.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		FAC51E592140BD660054755C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		FAC51E5A2140BD660054755C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		FAC51E622140BD680054755C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAC51E672140BD680054755C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAC51E682140BD680054755C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -92,6 +94,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B4F30781068663236F22A87E /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				B4F30498C795EF81A7C81D51 /* AppDelegate.h */,
+				B4F3086518C945BC6129BE57 /* AppDelegate.m */,
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
 		FAC51E4D2140BD660054755C = {
 			isa = PBXGroup;
 			children = (
@@ -115,8 +126,7 @@
 		FAC51E582140BD660054755C /* HomePwner */ = {
 			isa = PBXGroup;
 			children = (
-				FAC51E592140BD660054755C /* AppDelegate.h */,
-				FAC51E5A2140BD660054755C /* AppDelegate.m */,
+				FA6AA3132147E94900989F27 /* LaunchScreen.storyboard */,
 				FAC51E622140BD680054755C /* Assets.xcassets */,
 				FAC51E672140BD680054755C /* Info.plist */,
 				FAC51E682140BD680054755C /* main.m */,
@@ -133,6 +143,7 @@
 				FA210E4121424F86003A3384 /* HPDetailViewController.xib */,
 				B4F30059DC49A0938F7A0BA6 /* HPImageStore.m */,
 				B4F301FFA34DE19288D25EF6 /* HPImageStore.h */,
+				B4F30781068663236F22A87E /* AppDelegate */,
 			);
 			path = HomePwner;
 			sourceTree = "<group>";
@@ -261,6 +272,7 @@
 				FAC51E632140BD680054755C /* Assets.xcassets in Resources */,
 				FA210E4321424F86003A3384 /* HPDetailViewController.xib in Resources */,
 				FA210E3B21422C00003A3384 /* FooterView.xib in Resources */,
+				FA6AA3142147E94900989F27 /* LaunchScreen.storyboard in Resources */,
 				FA210E3921415C22003A3384 /* HeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,11 +300,11 @@
 			files = (
 				FAC51E692140BD680054755C /* main.m in Sources */,
 				FA210E4221424F86003A3384 /* HPDetailViewController.m in Sources */,
-				FAC51E5B2140BD660054755C /* AppDelegate.m in Sources */,
 				B4F3027C5E23F2BE1164B729 /* HPItem.m in Sources */,
 				B4F30725CF567EA2957E230E /* HPItemsViewController.m in Sources */,
 				B4F300C38FC785A97BF76506 /* HPItemStore.m in Sources */,
 				B4F3026C3572BA245C72DDE8 /* HPImageStore.m in Sources */,
+				B4F30D980FE6777723CF6493 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
