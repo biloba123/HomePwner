@@ -6,12 +6,12 @@
 //  Copyright (c) 2014 Big Nerd Ranch. All rights reserved.
 //
 
+#import <GameplayKit/GameplayKit.h>
 #import "HPItem.h"
 
 @implementation HPItem
 
-+ (instancetype)randomItem
-{
++ (instancetype)randomItem {
     // Create an immutable array of three adjectives
     NSArray *randomAdjectiveList = @[@"Fluffy", @"Rusty", @"Shiny"];
 
@@ -29,29 +29,28 @@
     // for "long"
 
     NSString *randomName = [NSString stringWithFormat:@"%@ %@",
-                            randomAdjectiveList[adjectiveIndex],
-                            randomNounList[nounIndex]];
+                                                      randomAdjectiveList[adjectiveIndex],
+                                                      randomNounList[nounIndex]];
 
     int randomValue = arc4random() % 100;
 
     NSString *randomSerialNumber = [NSString stringWithFormat:@"%c%c%c%c%c",
-                                    '0' + arc4random() % 10,
-                                    'A' + arc4random() % 26,
-                                    '0' + arc4random() % 10,
-                                    'A' + arc4random() % 26,
-                                    '0' + arc4random() % 10];
+                                                              '0' + arc4random() % 10,
+                                                              'A' + arc4random() % 26,
+                                                              '0' + arc4random() % 10,
+                                                              'A' + arc4random() % 26,
+                                                              '0' + arc4random() % 10];
 
     HPItem *newItem = [[self alloc] initWithItemName:randomName
-                                       valueInDollars:randomValue
-                                         serialNumber:randomSerialNumber];
+                                      valueInDollars:randomValue
+                                        serialNumber:randomSerialNumber];
 
     return newItem;
 }
 
 - (instancetype)initWithItemName:(NSString *)name
                   valueInDollars:(int)value
-                    serialNumber:(NSString *)sNumber
-{
+                    serialNumber:(NSString *)sNumber {
     // Call the superclass's designated initializer
     self = [super init];
 
@@ -63,38 +62,53 @@
         _valueInDollars = value;
         // Set _dateCreated to the current date and time
         _dateCreated = [[NSDate alloc] init];
-        _itemKey= [NSUUID new].UUIDString;
+        _itemKey = [NSUUID new].UUIDString;
     }
 
     // Return the address of the newly initialized object
     return self;
 }
 
-- (instancetype)initWithItemName:(NSString *)name
-{
+- (instancetype)initWithItemName:(NSString *)name {
     return [self initWithItemName:name
                    valueInDollars:0
                      serialNumber:@""];
 }
 
-- (instancetype)init
-{
+- (instancetype)init {
     return [self initWithItemName:@"Item"];
 }
 
-- (void)dealloc
-{
+- (void)encodeWithCoder:(NSCoder *)coder {
+    [coder encodeObject:self.itemName forKey:@"itemName"];
+    [coder encodeObject:self.serialNumber forKey:@"serialNumber"];
+    [coder encodeObject:self.dateCreated forKey:@"dateCreated"];
+    [coder encodeObject:self.itemKey forKey:@"itemKey"];
+    [coder encodeInt:self.valueInDollars forKey:@"valueInDollars"];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    if (self = [super init]) {
+        _itemName = [coder decodeObjectForKey:@"itemName"];
+        _serialNumber = [coder decodeObjectForKey:@"serialNumber"];
+        _dateCreated = [coder decodeObjectForKey:@"dateCreated"];
+        _itemKey = [coder decodeObjectForKey:@"itemKey"];
+        _valueInDollars = [coder decodeIntForKey:@"valueInDollars"];
+    }
+    return self;
+}
+
+- (void)dealloc {
     NSLog(@"Destroyed: %@", self);
 }
 
-- (NSString *)description
-{
+- (NSString *)description {
     NSString *descriptionString =
-        [[NSString alloc] initWithFormat:@"%@ (%@): Worth $%d, recorded on %@",
-         self.itemName,
-         self.serialNumber,
-         self.valueInDollars,
-         self.dateCreated];
+            [[NSString alloc] initWithFormat:@"%@ (%@): Worth $%d, recorded on %@",
+                                             self.itemName,
+                                             self.serialNumber,
+                                             self.valueInDollars,
+                                             self.dateCreated];
     return descriptionString;
 }
 

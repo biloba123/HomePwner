@@ -10,4 +10,7 @@
 @class HPItem;
 @interface HPDetailViewController : UIViewController
 @property (nonatomic) HPItem *item;
+@property (nonatomic, copy) void(^dismissBlock)(void);
+
+-(instancetype) initForAddItem:(BOOL)isAdd;
 @end

@@ -6,6 +6,9 @@
 #import "HPItemsViewController.h"
 #import "HPItemStore.h"
 #import "HPDetailViewController.h"
+#import "HPItem.h"
+#import "HPItemCell.h"
+
 
 @interface HPItemsViewController ()
 //@property(nonatomic, strong) IBOutlet UIView *headerView;
@@ -37,21 +40,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.tableView registerClass:[UITableViewCell class]
-           forCellReuseIdentifier:@"UITableViewCell"];
+//    [self.tableView registerClass:[HPItemCell class]
+//           forCellReuseIdentifier:@"UITableViewCell"];
+    UINib *nib= [UINib nibWithNibName:@"HPItemCell" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"HPItemCell"];
 //    self.tableView.tableHeaderView = self.headerView;
 //    self.tableView.tableFooterView = self.footerView;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    NSLog(@"%s", sel_getName(_cmd));
     [super viewWillAppear:YES];
     [self.tableView reloadData];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *tableViewCell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
-    tableViewCell.textLabel.text = [_itemStore.allItems[indexPath.row] description];
-    return tableViewCell;
+    HPItem *item=_itemStore.allItems[indexPath.row];
+    HPItemCell *itemCell = [tableView dequeueReusableCellWithIdentifier:@"HPItemCell"];
+    itemCell.nameLabel.text=item.itemName;
+    itemCell.serialNumberLabel.text=item.serialNumber;
+    itemCell.valueLabel.text= [NSString stringWithFormat:@"%d", item.valueInDollars];
+    return itemCell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -78,16 +87,22 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    HPDetailViewController *detailViewController = [HPDetailViewController new];
+    HPDetailViewController *detailViewController = [[HPDetailViewController alloc] initForAddItem:NO];
     detailViewController.item = _itemStore.allItems[indexPath.row];
     [self.navigationController pushViewController:detailViewController
                                          animated:YES];
 }
 
 - (IBAction)addNewItem:(id)sender {
-    [_itemStore createItem];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[_itemStore allItems].count - 1 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    HPDetailViewController *detailViewController= [[HPDetailViewController alloc] initForAddItem:YES];
+    detailViewController.item= [HPItem new];
+    detailViewController.dismissBlock=^(){
+        [self.tableView reloadData];
+    };
+    UINavigationController *navigationController1= [[UINavigationController alloc] initWithRootViewController:detailViewController];
+    navigationController1.modalPresentationStyle=UIModalPresentationFormSheet;
+    navigationController1.modalTransitionStyle=UIModalTransitionStyleCoverVertical;
+    [self presentViewController:navigationController1 animated:YES completion:nil];
 }
 
 - (IBAction)toggleEditingMode:(UIButton *)sender {

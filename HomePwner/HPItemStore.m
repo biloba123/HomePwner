@@ -7,8 +7,9 @@
 #import "HPItemStore.h"
 #import "HPItem.h"
 #import "HPImageStore.h"
-@interface HPItemStore()
-@property (nonatomic) NSMutableArray *privateItems;
+
+@interface HPItemStore ()
+@property(nonatomic) NSMutableArray *privateItems;
 @end
 
 @implementation HPItemStore {
@@ -21,23 +22,27 @@
     return nil;
 }
 
--(instancetype) initPrivate{
-    if(self= [super init]){
-        _privateItems= [NSMutableArray new];
+- (instancetype)initPrivate {
+    if (self = [super init]) {
+        _privateItems= [NSKeyedUnarchiver unarchiveObjectWithFile:[self itemArchivePath]];
+        if(!_privateItems) {
+            _privateItems = [NSMutableArray new];
+        }
     }
     return self;
 }
 
 + (instancetype)getInstance {
-    static HPItemStore *instance=nil;
-    if(instance==nil){
-        instance= [[HPItemStore alloc] initPrivate];
+    static HPItemStore *instance = nil;
+    if (instance == nil) {
+        instance = [[HPItemStore alloc] initPrivate];
     }
+    NSLog(@"%s %@", sel_getName(_cmd), [instance itemArchivePath]);
     return instance;
 }
 
 - (HPItem *)createItem {
-    HPItem *item= [HPItem randomItem];
+    HPItem *item = [HPItem new];
     [self.privateItems addObject:item];
     return item;
 }
@@ -47,17 +52,32 @@
     [self.privateItems removeObjectIdenticalTo:item];
 }
 
--(void)moveItemAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex{
-    if(fromIndex==toIndex) return;
-    HPItem *item=self.privateItems[fromIndex];
+- (void)moveItemAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
+    if (fromIndex == toIndex) return;
+    HPItem *item = self.privateItems[fromIndex];
     [self.privateItems removeObjectAtIndex:fromIndex];
     [self.privateItems insertObject:item atIndex:toIndex];
 }
+
+- (void)addItem:(HPItem *)item {
+    [self.privateItems addObject:item];
+}
+
+- (BOOL)saveChanges {
+    return [NSKeyedArchiver archiveRootObject:self.privateItems toFile:[self itemArchivePath]];
+}
+
 
 - (NSArray *)allItems {
     return self.privateItems;
 }
 
+
+- (NSString *)itemArchivePath {
+    return [[NSSearchPathForDirectoriesInDomains(
+            NSDocumentDirectory, NSUserDomainMask, YES
+    ) firstObject] stringByAppendingPathComponent:@"items.archive"];
+}
 
 
 @end

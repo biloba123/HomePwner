@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HPItem : NSObject
+@interface HPItem : NSObject<NSCoding>
 
 @property (nonatomic, copy) NSString *itemName;
 @property (nonatomic, copy) NSString *serialNumber;

@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HPDetailViewController">
             <connections>
+                <outlet property="cameraBun" destination="5YG-0s-5gj" id="BGO-RY-WwG"/>
                 <outlet property="dateLabel" destination="w6o-hH-Y4Y" id="mOj-KB-8vW"/>
                 <outlet property="nameField" destination="uBC-f5-Drx" id="b36-7M-gtg"/>
                 <outlet property="serialNumberField" destination="Chi-pG-P7m" id="a6T-iB-b8M"/>
@@ -70,7 +71,7 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B35-BL-iBC">
+                <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B35-BL-iBC">
                     <rect key="frame" x="80" y="184" width="271" height="30"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>

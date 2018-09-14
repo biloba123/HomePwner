@@ -9,6 +9,7 @@
 #import "HPDetailViewController.h"
 #include "HPItem.h"
 #import "HPImageStore.h"
+#import "HPItemStore.h"
 
 @interface HPDetailViewController () <UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property(weak, nonatomic) IBOutlet UITextField *nameField;
@@ -17,13 +18,44 @@
 @property(weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property(weak, nonatomic) IBOutlet UIImageView *imageView;
 @property(weak, nonatomic) IBOutlet UIToolbar *toolbar;
-@property(weak, nonatomic) IBOutlet UIButton *deleteImgBtn;
+@property(weak, nonatomic) IBOutlet UIBarButtonItem *cameraBun;
 
 @end
 
 @implementation HPDetailViewController
 
+#pragma mark - Init methods
+
+- (instancetype)initForAddItem:(BOOL)isAdd {
+    if (isAdd) {
+        UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc]
+                initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                     target:self
+                                     action:@selector(cancel:)];
+        self.navigationItem.leftBarButtonItem = cancelBtn;
+        UIBarButtonItem *addBtn = [[UIBarButtonItem alloc]
+                initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                     target:self
+                                     action:@selector(add:)];
+        self.navigationItem.rightBarButtonItem = addBtn;
+    }
+    return self;
+}
+
+- (instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil {
+    @throw [NSException exceptionWithName:@"Init exception"
+                                   reason:@"use initForAddItem: to init"
+                                 userInfo:nil];
+    return nil;
+}
+
+
 #pragma mark - View life cycle
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+    [self prepareViewsForOrientation:[self interfaceOrientation]];
+}
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -50,7 +82,6 @@
         formatter.timeStyle = NSDateFormatterNoStyle;
     }
     self.dateLabel.text = [formatter stringFromDate:item.dateCreated];
-    [self showImg:[[HPImageStore getInstance] imageForKey:item.itemKey]];
 
     UIImageView *iv = [UIImageView new];
     iv.contentMode = UIViewContentModeScaleAspectFit;
@@ -66,15 +97,16 @@
             @"toolbar": self.toolbar
     };
     NSArray *horConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[imageView]-0-|"
-                                                         options:0
-                                                         metrics:nil
-                                                           views:nameMap];
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:nameMap];
     NSArray *verConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[dateLabel]-16-[imageView]-16-[toolbar]"
-                                                                    options:0
-                                                                    metrics:nil
-                                                                      views:nameMap];
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:nameMap];
     [self.view addConstraints:horConstraints];
     [self.view addConstraints:verConstraints];
+    [self showImg:[[HPImageStore getInstance] imageForKey:item.itemKey]];
 
 }
 
@@ -105,6 +137,14 @@
     imagePickerController.allowsEditing = YES;
     imagePickerController.delegate = self;
 
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        imagePickerController.modalPresentationStyle = UIModalPresentationPopover;
+        UIPopoverPresentationController *imagePickerPopover = imagePickerController.popoverPresentationController;
+        imagePickerPopover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+        imagePickerPopover.barButtonItem = sender;
+        imagePickerPopover.backgroundColor = [UIColor whiteColor];
+
+    }
     [self presentViewController:imagePickerController
                        animated:YES
                      completion:nil];
@@ -133,7 +173,6 @@
 
 - (void)showImg:(UIImage *)image {
     self.imageView.image = image;
-    self.deleteImgBtn.hidden = image == nil;
 }
 
 //- (void)viewDidLayoutSubviews {
@@ -148,6 +187,7 @@
     NSLog(@"%s", sel_getName(_cmd));
     [self.view endEditing:YES];
 }
+
 /*
 #pragma mark - Navigation
 
@@ -160,6 +200,39 @@
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskPortrait;
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [self prepareViewsForOrientation:toInterfaceOrientation];
+}
+
+- (void)prepareViewsForOrientation:(UIInterfaceOrientation)orientation {
+    NSLog(@"%s %ld", sel_getName(_cmd), orientation);
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        return;
+    }
+
+    if (UIInterfaceOrientationIsLandscape(orientation)) {
+        self.cameraBun.enabled = NO;
+        self.imageView.hidden = YES;
+    } else {
+        self.cameraBun.enabled = YES;
+        self.imageView.hidden = NO;
+    }
+}
+
+#pragma mark - Navigation item
+
+- (void)cancel:(id)sender {
+    [[HPImageStore getInstance] deleteImageForKey:self.item.itemKey];
+    [self.presentingViewController dismissViewControllerAnimated:YES
+                                                      completion:self.dismissBlock];
+}
+
+- (void)add:(id)sender {
+    [[HPItemStore getInstance] addItem:self.item];
+    [self.presentingViewController dismissViewControllerAnimated:YES
+                                                      completion:self.dismissBlock];
 }
 
 @end
