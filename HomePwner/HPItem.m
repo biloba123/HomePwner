@@ -75,6 +75,36 @@
                      serialNumber:@""];
 }
 
+- (void)setThumbnailFromImage:(UIImage *)image {
+    CGRect newRect = CGRectMake(0, 0, 40, 40);
+    float ratio = MAX(newRect.size.width / image.size.width, newRect.size.height / image.size.height);
+
+    UIGraphicsBeginImageContextWithOptions(newRect.size, NO, 0.0);
+    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:newRect
+                                                          cornerRadius:5.0];
+    [bezierPath addClip];
+
+    CGRect projectRect;
+    projectRect.size.width=image.size.width*ratio;
+    projectRect.size.height=image.size.height*ratio;
+    projectRect.origin.x=(projectRect.size.width-newRect.size.width)/-2;
+    projectRect.origin.y=(projectRect.size.height-newRect.size.height)/-2;
+    [image drawInRect:projectRect];
+
+    NSLog(@"%s %f %f %f %f", sel_getName(_cmd), projectRect.size.width,
+    projectRect.size.height,
+    projectRect.origin.x,
+    projectRect.origin.y);
+
+    self.thumbnail= UIGraphicsGetImageFromCurrentImageContext();
+    [UIImagePNGRepresentation(_thumbnail) writeToFile:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)
+            .firstObject stringByAppendingPathComponent:_itemName] atomically:YES];
+    NSLog(@"%s %f %f", sel_getName(_cmd), _thumbnail.size.width,
+            _thumbnail.size.height);
+    UIGraphicsEndImageContext();
+}
+
+
 - (instancetype)init {
     return [self initWithItemName:@"Item"];
 }
@@ -85,6 +115,7 @@
     [coder encodeObject:self.dateCreated forKey:@"dateCreated"];
     [coder encodeObject:self.itemKey forKey:@"itemKey"];
     [coder encodeInt:self.valueInDollars forKey:@"valueInDollars"];
+    [coder encodeObject:self.thumbnail forKey:@"thumbnail"];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
@@ -94,6 +125,7 @@
         _dateCreated = [coder decodeObjectForKey:@"dateCreated"];
         _itemKey = [coder decodeObjectForKey:@"itemKey"];
         _valueInDollars = [coder decodeIntForKey:@"valueInDollars"];
+        _thumbnail= [coder decodeObjectForKey:@"thumbnail"];
     }
     return self;
 }

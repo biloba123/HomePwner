@@ -128,7 +128,7 @@
             <connections>
                 <action selector="backgroundTapped:" destination="-1" eventType="touchUpInside" id="hLo-fx-Rti"/>
             </connections>
-            <point key="canvasLocation" x="36.5" y="86.5"/>
+            <point key="canvasLocation" x="168" y="107"/>
         </view>
     </objects>
 </document>

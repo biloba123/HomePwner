@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "google.png",
+      "filename" : "Hypno.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Hypno@2x.png",
       "scale" : "2x"
     },
     {

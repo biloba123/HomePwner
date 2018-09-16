@@ -21,6 +21,7 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Gf3-Xq-Pp5">
                         <rect key="frame" x="2" y="2" width="40" height="40"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="cxf-2c-oot"/>
                             <constraint firstAttribute="width" constant="40" id="szh-5F-Qdm"/>
@@ -53,11 +54,19 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tY0-6y-o9g">
+                        <rect key="frame" x="2" y="2" width="40" height="40"/>
+                        <connections>
+                            <action selector="showImage:" destination="R8E-In-IVa" eventType="touchUpInside" id="Ale-JZ-J2R"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="cuu-Ns-UT2" firstAttribute="leading" secondItem="Rq6-Wl-LoY" secondAttribute="trailing" constant="8" id="6V5-DR-XAq"/>
                     <constraint firstItem="QFe-lb-wTg" firstAttribute="leading" secondItem="Gf3-Xq-Pp5" secondAttribute="trailing" constant="8" id="9JR-4h-vsw"/>
                     <constraint firstItem="Rq6-Wl-LoY" firstAttribute="top" secondItem="7By-aU-vda" secondAttribute="top" constant="2" id="A0z-5n-1wI"/>
+                    <constraint firstItem="tY0-6y-o9g" firstAttribute="leading" secondItem="Gf3-Xq-Pp5" secondAttribute="leading" id="CEW-eS-wDH"/>
+                    <constraint firstItem="tY0-6y-o9g" firstAttribute="trailing" secondItem="Gf3-Xq-Pp5" secondAttribute="trailing" id="LJV-42-8V3"/>
                     <constraint firstItem="Gf3-Xq-Pp5" firstAttribute="leading" secondItem="7By-aU-vda" secondAttribute="leading" constant="2" id="WsU-XV-KWO"/>
                     <constraint firstAttribute="trailingMargin" secondItem="cuu-Ns-UT2" secondAttribute="trailing" constant="8" id="ah6-3p-Ptg"/>
                     <constraint firstItem="Rq6-Wl-LoY" firstAttribute="leading" secondItem="Gf3-Xq-Pp5" secondAttribute="trailing" constant="8" id="dCJ-Xy-w2R"/>
@@ -65,6 +74,8 @@
                     <constraint firstItem="Gf3-Xq-Pp5" firstAttribute="centerY" secondItem="7By-aU-vda" secondAttribute="centerY" id="mgG-2q-yCv"/>
                     <constraint firstItem="cuu-Ns-UT2" firstAttribute="centerY" secondItem="7By-aU-vda" secondAttribute="centerY" id="ntZ-Pu-lk8"/>
                     <constraint firstItem="cuu-Ns-UT2" firstAttribute="leading" secondItem="QFe-lb-wTg" secondAttribute="trailing" constant="8" id="oGu-tz-GLQ"/>
+                    <constraint firstItem="tY0-6y-o9g" firstAttribute="bottom" secondItem="Gf3-Xq-Pp5" secondAttribute="bottom" id="shB-ka-yVv"/>
+                    <constraint firstItem="tY0-6y-o9g" firstAttribute="top" secondItem="Gf3-Xq-Pp5" secondAttribute="top" id="xxm-83-xnN"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

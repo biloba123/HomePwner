@@ -8,6 +8,8 @@
 #import "HPDetailViewController.h"
 #import "HPItem.h"
 #import "HPItemCell.h"
+#import "HPImageViewController.h"
+#import "HPImageStore.h"
 
 
 @interface HPItemsViewController ()
@@ -59,7 +61,29 @@
     HPItemCell *itemCell = [tableView dequeueReusableCellWithIdentifier:@"HPItemCell"];
     itemCell.nameLabel.text=item.itemName;
     itemCell.serialNumberLabel.text=item.serialNumber;
+//    if(item.valueInDollars<=50){
+//        itemCell.valueLabel.textColor= [UIColor redColor];
+//    } else{
+//        itemCell.valueLabel.textColor= [UIColor greenColor];
+//    }
     itemCell.valueLabel.text= [NSString stringWithFormat:@"%d", item.valueInDollars];
+    itemCell.imageView.image=item.thumbnail;
+    __weak HPItemCell *weakCell=itemCell;
+    itemCell.actionBlock=^(){
+        if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad){
+            __strong HPItemCell *strongCell=weakCell;
+            HPImageViewController *imageViewController= [HPImageViewController new];
+            imageViewController.image= [[HPImageStore getInstance] imageForKey:item.itemKey];
+            imageViewController.modalPresentationStyle=UIModalPresentationPopover;
+            imageViewController.preferredContentSize=CGSizeMake(600, 600);
+            UIPopoverPresentationController *popover=imageViewController.popoverPresentationController;
+            popover.sourceView=strongCell;
+            popover.permittedArrowDirections=UIPopoverArrowDirectionAny;
+            [self presentViewController:imageViewController animated:YES completion:nil];
+        }
+    };
+//    [UIImagePNGRepresentation(item.thumbnail) writeToFile:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)
+//            .firstObject stringByAppendingPathComponent:item.itemName] atomically:YES];
     return itemCell;
 }
 
