@@ -13,6 +13,5 @@
 -(HPItem *)createItem;
 -(void)removeItem:(HPItem *)item;
 -(void)moveItemAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
--(void)addItem:(HPItem *)item;
 -(BOOL)saveChanges;
 @end

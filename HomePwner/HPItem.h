@@ -7,24 +7,18 @@
 //
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@interface HPItem : NSObject<NSCoding>
+@interface HPItem : NSManagedObject
 
 @property (nonatomic, copy) NSString *itemName;
 @property (nonatomic, copy) NSString *serialNumber;
 @property (nonatomic) int valueInDollars;
-@property (nonatomic, readonly) NSDate *dateCreated;
+@property (nonatomic) NSDate *dateCreated;
 @property (nonatomic, copy) NSString *itemKey;
 @property (nonatomic) UIImage *thumbnail;
-
-+ (instancetype)randomItem;
-
-// Designated initializer for HPItem
-- (instancetype)initWithItemName:(NSString *)name
-                  valueInDollars:(int)value
-                    serialNumber:(NSString *)sNumber;
-
-- (instancetype)initWithItemName:(NSString *)name;
+@property (nonatomic) double orderingValue;
+@property (nonatomic) NSManagedObject *assetType;
 
 -(void)setThumbnailFromImage:(UIImage *)image;
 

@@ -35,6 +35,7 @@
 }
 
 + (instancetype)getInstance {
+    NSLog(@"%s", sel_getName(_cmd));
     static HPImageStore *instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

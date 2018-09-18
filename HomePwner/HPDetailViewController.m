@@ -226,12 +226,12 @@
 
 - (void)cancel:(id)sender {
     [[HPImageStore getInstance] deleteImageForKey:self.item.itemKey];
+    [[HPItemStore getInstance] removeItem:self.item];
     [self.presentingViewController dismissViewControllerAnimated:YES
                                                       completion:self.dismissBlock];
 }
 
 - (void)add:(id)sender {
-    [[HPItemStore getInstance] addItem:self.item];
     [self.presentingViewController dismissViewControllerAnimated:YES
                                                       completion:self.dismissBlock];
 }

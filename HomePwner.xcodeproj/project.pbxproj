@@ -14,6 +14,7 @@
 		B4F30C9CDF1AE8E95F92C816 /* HPNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F306AFE57C2A5BC283D7C9 /* HPNavigationController.m */; };
 		B4F30D7F18FC2FBF62AAFEDE /* HPItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F30DAF6E4A7F2AFCCCB82C /* HPItemCell.m */; };
 		B4F30D980FE6777723CF6493 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F3086518C945BC6129BE57 /* AppDelegate.m */; };
+		FA159760214FE6EA001F8421 /* HomePwner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA15975E214FE6EA001F8421 /* HomePwner.xcdatamodeld */; };
 		FA210E3921415C22003A3384 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA210E3821415C22003A3384 /* HeaderView.xib */; };
 		FA210E3B21422C00003A3384 /* FooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA210E3A21422C00003A3384 /* FooterView.xib */; };
 		FA210E4221424F86003A3384 /* HPDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA210E4021424F86003A3384 /* HPDetailViewController.m */; };
@@ -59,6 +60,7 @@
 		B4F30AEFC4BE3581E00B992D /* HPItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPItem.m; sourceTree = "<group>"; };
 		B4F30DAF6E4A7F2AFCCCB82C /* HPItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPItemCell.m; sourceTree = "<group>"; };
 		B4F30EBF50B9ECE1AE2B0E0D /* HPItemStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPItemStore.m; sourceTree = "<group>"; };
+		FA15975F214FE6EA001F8421 /* HomePwner.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HomePwner.xcdatamodel; sourceTree = "<group>"; };
 		FA210E3821415C22003A3384 /* HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 		FA210E3A21422C00003A3384 /* FooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FooterView.xib; sourceTree = "<group>"; };
 		FA210E3F21424F86003A3384 /* HPDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPDetailViewController.h; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				FADF0DF0214BA72E00D91B74 /* HPItemCell.xib */,
 				FADF0DF3214E0AD800D91B74 /* HPImageViewController.h */,
 				FADF0DF4214E0AD800D91B74 /* HPImageViewController.m */,
+				FA15975E214FE6EA001F8421 /* HomePwner.xcdatamodeld */,
 			);
 			path = HomePwner;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				FAC51E692140BD680054755C /* main.m in Sources */,
 				FA210E4221424F86003A3384 /* HPDetailViewController.m in Sources */,
 				B4F3027C5E23F2BE1164B729 /* HPItem.m in Sources */,
+				FA159760214FE6EA001F8421 /* HomePwner.xcdatamodeld in Sources */,
 				B4F30725CF567EA2957E230E /* HPItemsViewController.m in Sources */,
 				B4F300C38FC785A97BF76506 /* HPItemStore.m in Sources */,
 				B4F3026C3572BA245C72DDE8 /* HPImageStore.m in Sources */,
@@ -612,6 +616,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FA15975E214FE6EA001F8421 /* HomePwner.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FA15975F214FE6EA001F8421 /* HomePwner.xcdatamodel */,
+			);
+			currentVersion = FA15975F214FE6EA001F8421 /* HomePwner.xcdatamodel */;
+			path = HomePwner.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FAC51E4E2140BD660054755C /* Project object */;
 }

@@ -119,7 +119,7 @@
 
 - (IBAction)addNewItem:(id)sender {
     HPDetailViewController *detailViewController= [[HPDetailViewController alloc] initForAddItem:YES];
-    detailViewController.item= [HPItem new];
+    detailViewController.item= [_itemStore createItem];
     detailViewController.dismissBlock=^(){
         [self.tableView reloadData];
     };
